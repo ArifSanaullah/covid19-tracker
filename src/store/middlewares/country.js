@@ -3,7 +3,7 @@ import actions from "../actions/index";
 
 const {
   countryActions: { getAllCountries },
-  errorActions: { setError },
+  sharedActions: { setError },
 } = actions;
 
 const getAllCountriesData = () => {

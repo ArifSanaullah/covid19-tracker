@@ -3,14 +3,14 @@ import actions from "../actions/index";
 
 const {
   summaryActions: { getSummary },
-  errorActions: { setError },
+  sharedActions: { setError, setLoading },
 } = actions;
 
 const summaryMiddleware = () => {
   return async (dispatch) => {
     try {
-      const res = await axios.get("/summary");
-      return dispatch(getSummary(res.data));
+      const { data } = await axios.get("/summary");
+      return dispatch(getSummary(data));
     } catch (err) {
       return dispatch(setError(err.message));
     }
