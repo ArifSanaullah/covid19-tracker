@@ -5,3 +5,62 @@
   font-family: "roboto";
   src: url("./resources/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
 }
+:root {
+  --main-font-fize: 1.6rem;
+  --gradient-red: #ed213a;
+  --gradient-brown: #93291e;
+}
+
+pre {
+  font-size: var(--main-font-fize);
+}
+
+.fc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-container {
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  background: var(--gradient-red); /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    var(--gradient-red),
+    var(--gradient-brown)
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    var(--gradient-red),
+    var(--gradient-brown)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.covid-loader {
+  width: 8rem;
+  height: 5.8rem;
+  background: transparent url("./resources/images/covid-loader-large.png") no-repeat;
+  background-size: contain;
+  animation: spin 3s linear infinite;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

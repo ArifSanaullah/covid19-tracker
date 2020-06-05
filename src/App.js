@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import Loader from "./components/Loader";
+import Loader from "./components/Loader/index"
 import "./App.css";
 
 class App extends React.Component {
@@ -37,7 +37,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className="test">Hell world</div>
         <div className="App">
           {!this.state.rootData && <Loader />}
           <pre>{this.state.rootData}</pre>
