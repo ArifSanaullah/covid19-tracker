@@ -1,49 +1,40 @@
 import React from "react";
-import axios from "axios";
-import Loader from "./components/Loader/index"
+import { connect } from "react-redux";
+import Loader from "./components/Loader/index";
 import "./App.css";
+import summaryMiddleware from "./store/middlewares/summary";
+import countryMiddleware from "./store/middlewares/country";
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      rootData: null,
-      countries: [],
-    };
+  async componentDidMount() {
+    await this.props.summaryMiddleware();
+    await this.props.countryMiddleware();
   }
-
-  setRootData(data) {
-    this.setState((prevState) => ({ ...prevState, rootData: data }));
-  }
-
-  setCouneries(countries) {
-    this.setState((prevState) => ({ ...prevState, countries }));
-  }
-
-  async getSummary() {
-    const { data } = await axios.get("https://api.covid19api.com/summary");
-    const jsonData = JSON.stringify(data, null, "  ");
-    this.setRootData(jsonData);
-  }
-
-  componentDidMount() {
-    try {
-      this.getSummary();
-    } catch (err) {
-      console.log(err.message);
-    }
-  }
-
   render() {
     return (
       <div>
         <div className="App">
-          {!this.state.rootData && <Loader />}
-          <pre>{this.state.rootData}</pre>
+          <h1>Summary</h1>
+          {!this.props.summary && <Loader />}
+          <pre>{this.props.summary.Date}</pre>
+
+          <h1>Countries</h1>
+          {!this.props.countries && <Loader />}
+          <pre>{this.props.countries.length}</pre>
         </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  ...state.summaryReducers,
+  ...state.countryReducers,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  summaryMiddleware: () => dispatch(summaryMiddleware()),
+  countryMiddleware: () => dispatch(countryMiddleware()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
