@@ -3,7 +3,7 @@ import actions from "../actions/index";
 
 const {
   summaryActions: { getSummary },
-  sharedActions: { setError, setLoading },
+  sharedActions: { setError },
 } = actions;
 
 const summaryMiddleware = () => {

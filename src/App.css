@@ -2,13 +2,21 @@
 @font-face {
   font-family: "raleway";
   src: url("./resources/fonts/Raleway/Raleway-Light.ttf") format("truetype");
-  font-family: "roboto";
-  src: url("./resources/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  /* font-family: "roboto";
+  src: url("./resources/fonts/Roboto/Roboto-Regular.ttf") format("truetype"); */
 }
 :root {
   --main-font-fize: 1.6rem;
+  --heading-xl: 3.2rem;
+  --heading-l: 2.4rem;
   --gradient-red: #ed213a;
   --gradient-brown: #93291e;
+  --primary-gradient: linear-gradient(
+    to right,
+    var(--gradient-red),
+    var(--gradient-brown)
+  );
+  --light-fc: #f4f4f4;
 }
 
 pre {
@@ -22,28 +30,108 @@ pre {
 }
 
 .loader-container {
-  height: 100vh;
-  max-width: 100vw;
-  max-height: 100vh;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
   background: var(--gradient-red); /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
     var(--gradient-red),
     var(--gradient-brown)
   ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    var(--gradient-red),
-    var(--gradient-brown)
+  background: var(
+    --primary-gradient
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .covid-loader {
   width: 8rem;
   height: 5.8rem;
-  background: transparent url("./resources/images/covid-loader-large.png") no-repeat;
+  background: transparent url("./resources/images/covid-loader-large.png")
+    no-repeat;
   background-size: contain;
   animation: spin 3s linear infinite;
+}
+
+.sections-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0 1rem;
+  font-size: 1.6rem;
+}
+
+section {
+  width: 100vw;
+  height: auto;
+}
+
+.live-info-section {
+  width: 100%;
+}
+
+.live-info-cards-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 100vh;
+  padding: 9rem;
+  border: 1px solid;
+}
+
+.live-info-card {
+  width: 20rem;
+  padding: 5rem;
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.live-info-card-Recovered {
+  background-color: greenyellow;
+}
+
+.live-info-card-Confirmed {
+  background-color: indianred;
+}
+
+.live-info-card-Deaths {
+  background-color: #ed213a
+}
+
+.live-info-card .heading,
+.live-info-card .value {
+  font-size: var(--heading-l);
+  font-weight: bolder;
+}
+
+.live-info-card .heading {
+  margin-top: 2rem;
+}
+
+.live-info-card .value {
+  font-family: sans-serif;
+  font-size: var(--heading-xl);
+}
+
+.error-container {
+  font-size: var(--heading-xl);
+  font-weight: 800;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-gradient);
+  color: var(--light-fc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  font-size: var(--heading-xl);
+  font-weight: bolder;
 }
 
 @-moz-keyframes spin {

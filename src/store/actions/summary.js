@@ -1,4 +1,3 @@
-import axios from "../../utilities/axios";
 import { GET_SUMMARY } from "../actionTypes";
 
 export const getSummary = (summary) => {
