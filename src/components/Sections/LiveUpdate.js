@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import LiveUpdateCard from "./components/LiveUpdateCard";
-import { red, green, blue, orange } from "@material-ui/core/colors";
+import { red, green, orange } from "@material-ui/core/colors";
 import { GlobalContext } from "../../store/contexts/GlobalContext";
 
 function LiveUpdate() {

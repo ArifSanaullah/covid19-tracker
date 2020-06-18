@@ -5,6 +5,7 @@ import {
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
+import { grey } from "@material-ui/core/colors";
 
 import "./App.css";
 import Navigation from "./components/Header/Navigation";
@@ -12,7 +13,6 @@ import RobotoRegularttf from "./resources/fonts/Roboto/Roboto-Regular.ttf";
 import Sections from "./components/Sections";
 import PoppinsRegularttf from "./resources/fonts/Poppins/Poppins-Regular.ttf";
 import Hero from "./components/Sections/Hero";
-import { grey } from "@material-ui/core/colors";
 import { GlobalContextProvider } from "./store/contexts/GlobalContext";
 import GlobalReducer from "./store/reducers/GlobalReducer";
 import axios from "./utilities/axios";
