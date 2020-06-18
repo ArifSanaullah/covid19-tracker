@@ -2,8 +2,8 @@
 @font-face {
   font-family: "raleway";
   src: url("./resources/fonts/Raleway/Raleway-Light.ttf") format("truetype");
-  /* font-family: "roboto";
-  src: url("./resources/fonts/Roboto/Roboto-Regular.ttf") format("truetype"); */
+  font-family: "roboto";
+  src: url("./resources/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
 }
 :root {
   --main-font-fize: 1.6rem;
@@ -99,7 +99,7 @@ section {
 }
 
 .live-info-card-Deaths {
-  background-color: #ed213a
+  background-color: #ed213a;
 }
 
 .live-info-card .heading,
@@ -151,4 +151,37 @@ section {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.navContainer {
+  padding: 1rem 4rem;
+}
+
+.logo {
+  width: 9.5rem;
+  height: 7.5rem;
+  border: 1px solid black;
+}
+
+.logo-text {
+  font-size: var(--heading-xl);
+  font-family: "raleway";
+  letter-spacing: 2px;
+  font-weight: bold;
+  border: 1px solid blue;
+  margin-top: 3rem;
+}
+
+.number {
+  font-family: "roboto" !important;
+  color: var(--gradient-brown);
+}
+
+.hero {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://i.ibb.co/42F6W6Z/hero.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
