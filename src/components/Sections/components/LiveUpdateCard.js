@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import numberWithComas from "../../../utilities/numberWithComas";
+import Countup from "react-countup";
 
 const useStyles = makeStyles({
   root: {
@@ -17,6 +17,9 @@ const useStyles = makeStyles({
     fontSize: "4rem",
     textAlign: "center",
   },
+  countup: {
+    fontFamily: "Roboto"
+  }
 });
 
 export default function LiveUpdateCard({
@@ -37,7 +40,7 @@ export default function LiveUpdateCard({
           gutterBottom
           style={{ color }}
         >
-          {cardData && numberWithComas(cardData[1])}
+          {cardData && <Countup end={cardData[1]} className={classes.countup}  />}
         </Typography>
         <Typography variant="h5" component="h2" className={classes.title}>
           {cardData && cardData[0].replace(/([a-z])([A-Z])/g, "$1 $2")}
