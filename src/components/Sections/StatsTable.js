@@ -10,6 +10,7 @@ import {
   TablePagination,
   TableRow,
 } from "@material-ui/core";
+import { blue, grey } from "@material-ui/core/colors";
 
 import { GlobalContext } from "../../store/contexts/GlobalContext";
 
@@ -20,12 +21,30 @@ const useStyles = makeStyles({
   container: {
     maxHeight: 440,
   },
+  tableHeadingCell: {
+    fontSize: "1.4rem",
+    backgroundColor: blue[900],
+    color: grey[100],
+    textTransform: "uppercase",
+  },
+  tableDataRow: {
+    transition: "all .5s ease-out",
+    "&:hover": {
+      backgroundColor: grey[400],
+    },
+  },
+  tableDataCell: {
+    fontSize: "1.2rem",
+    padding: ".75rem 1.2rem",
+  },
 });
 
 export default function StickyHeadTable() {
   const {
     state: { summary },
   } = useContext(GlobalContext);
+
+  const fetchedCountries = summary ? summary.Countries : [];
 
   const classes = useStyles();
   const [countries, setCountries] = React.useState(0);
@@ -46,36 +65,48 @@ export default function StickyHeadTable() {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {summary &&
-                Object.keys(summary.Countries[0]).map((key) => (
-                  <TableCell key={key}>
-                    {key.replace(/([a-z])([A-Z])/g, "$1 $2")}
-                  </TableCell>
-                ))}
+              {fetchedCountries.length
+                ? Object.keys(fetchedCountries[0]).map((key) => (
+                    <TableCell key={key} className={classes.tableHeadingCell}>
+                      {key.replace(/([a-z])([A-Z])/g, "$1 $2")}
+                    </TableCell>
+                  ))
+                : null}
             </TableRow>
           </TableHead>
           <TableBody>
-            {summary &&
-              summary.Countries.slice(
-                countries * countriesPerPage,
-                countries * countriesPerPage + countriesPerPage
-              ).map((country) => {
-                return (
-                  <TableRow key={Math.random() * 10000}>
-                    {Object.values(country).map((value) => (
-                      <TableCell key={Math.random() * 10000}>{value}</TableCell>
-                    ))}
-                  </TableRow>
-                );
-              })}
+            {fetchedCountries.length
+              ? fetchedCountries
+                  .slice(
+                    countries * countriesPerPage,
+                    countries * countriesPerPage + countriesPerPage
+                  )
+                  .map((country) => {
+                    return (
+                      <TableRow
+                        key={Math.random() * 10000}
+                        className={classes.tableDataRow}
+                      >
+                        {Object.values(country).map((value) => (
+                          <TableCell
+                            key={Math.random() * 10000}
+                            className={classes.tableDataCell}
+                          >
+                            {value}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    );
+                  })
+              : null}
           </TableBody>
         </Table>
       </TableContainer>
-      {summary && (
+      {fetchedCountries.length && (
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
-          count={summary.Countries.length}
+          count={fetchedCountries.length}
           rowsPerPage={countriesPerPage}
           page={countries}
           onChangePage={handleChangePage}

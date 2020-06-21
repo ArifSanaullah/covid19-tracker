@@ -26,6 +26,7 @@ function LiveUpdate() {
       xs={12}
       lg={12}
       justify="center"
+      alignItems="center"
       style={{
         background:
           "#f2f4f9 url(https://i.ibb.co/zHnyNHY/bg-pattren.png) no-repeat center",

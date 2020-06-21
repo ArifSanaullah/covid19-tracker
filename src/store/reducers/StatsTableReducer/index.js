@@ -8,7 +8,6 @@ export const initialState = {
 const statsTableReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CURRENT_PAGE:
-      console.log(action);
       return { ...state, currentPage: action.payload.currentPage };
 
     case SET_COUNTRIES_PER_PAGE:
