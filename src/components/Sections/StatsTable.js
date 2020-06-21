@@ -44,7 +44,7 @@ export default function StickyHeadTable() {
     state: { summary },
   } = useContext(GlobalContext);
 
-  const fetchedCountries = summary ? summary.Countries : [];
+  const fetchedCountries = summary?.Countries || [];
 
   const classes = useStyles();
   const [countries, setCountries] = React.useState(0);
@@ -65,7 +65,7 @@ export default function StickyHeadTable() {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {fetchedCountries.length
+              {fetchedCountries.length //using short-circuit here was causing a warning.
                 ? Object.keys(fetchedCountries[0]).map((key) => (
                     <TableCell key={key} className={classes.tableHeadingCell}>
                       {key.replace(/([a-z])([A-Z])/g, "$1 $2")}
