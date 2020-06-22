@@ -32,8 +32,14 @@ jobs:
         run: npm install -g surge
       - name: Deploying to surge
         run: surge ./build arif_covid19-tracker.surge.sh --token ${{ secrets.SURGE_TOKEN }}
-        env:
-          CI: true 
-          REACT_APP_MAPBOX_TOKEN: ${{secrets.REACT_APP_MAPBOX_TOKEN}}
       - name: Testing MAPBOX_TOKEN
-        run: echo ${{secrets.REACT_APP_MAPBOX_TOKEN}}
+        with:
+          MAPBOX_TOKEN: ${{secrets.REACT_APP_MAPBOX_TOKEN}} 
+        env:
+          REACT_APP_MAPBOX_TOKEN: ${{secrets.REACT_APP_MAPBOX_TOKEN}}
+      - name: REACT_APP_MAPBOX_TOKEN
+        run: |
+          echo HELLO_WORLD_A "$REACT_APP_MAPBOX_TOKEN"
+      - name: MAPBOX_TOKEN
+        run: |
+          echo HELLO_WORLD_B "$MAPBOX_TOKEN"
