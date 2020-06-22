@@ -36,4 +36,4 @@ jobs:
           CI: true 
           REACT_APP_MAPBOX_TOKEN: ${{secrets.REACT_APP_MAPBOX_TOKEN}}
       - name: Testing MAPBOX_TOKEN
-        run: echo $process.env.REACT_APP_MAPBOX_TOKEN
+        run: echo $REACT_APP_MAPBOX_TOKEN
