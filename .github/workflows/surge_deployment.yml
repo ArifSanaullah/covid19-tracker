@@ -32,3 +32,5 @@ jobs:
         run: npm install -g surge
       - name: Deploying to surge
         run: surge ./build arif_covid19-tracker.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        env:
+          MAPBOX_TOKEN: ${{secrets.MAPBOX_TOKEN}} 
