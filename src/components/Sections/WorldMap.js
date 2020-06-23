@@ -38,7 +38,6 @@ function WorldMap() {
         });
 
         const { data } = await jhAxios.get("/v2/countries");
-        console.log(data[0]);
         dispatch({ type: GET_WORLD_MAP_DATA, payload: { mapData: data } });
 
         dispatch({
@@ -93,7 +92,7 @@ function WorldMap() {
                   <h1>Deaths: {country.deaths}</h1>
                   <h1>Recovered: {country.recovered}</h1>
                   <h1>
-                    Last Updated at: {new Date(country.updated).toString()}
+                    Last Updated at: {new Date(country.updated).toLocaleString()}
                   </h1>
                 </div>
               </div>

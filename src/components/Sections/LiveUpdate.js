@@ -58,7 +58,7 @@ function LiveUpdate() {
                 variant="h1"
                 style={{ color: red["A700"], marginTop: "2rem" }}
               >
-                {summary?.Date}
+                {summary?.Date && new Date(summary.Date).toLocaleString()}
               </Typography>
             </Grid>
           </Grid>

@@ -13,6 +13,7 @@ import {
 import { blue, grey } from "@material-ui/core/colors";
 
 import { GlobalContext } from "../../store/contexts/GlobalContext";
+import { v4 as uuidv4 } from "uuid";
 
 const useStyles = makeStyles({
   root: {
@@ -83,13 +84,10 @@ export default function StickyHeadTable() {
                   )
                   .map((country) => {
                     return (
-                      <TableRow
-                        key={Math.random() * 10000}
-                        className={classes.tableDataRow}
-                      >
+                      <TableRow key={uuidv4()} className={classes.tableDataRow}>
                         {Object.values(country).map((value) => (
                           <TableCell
-                            key={Math.random() * 10000}
+                            key={uuidv4()}
                             className={classes.tableDataCell}
                           >
                             {value}
