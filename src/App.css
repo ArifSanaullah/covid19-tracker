@@ -185,3 +185,38 @@ section {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.country {
+  width: 4rem;
+  height: 2.5rem;
+  z-index: 1;
+}
+
+.flag {
+  width: 4rem;
+  height: 2.5rem;
+  background-size: cover;
+  cursor: pointer;
+  border-radius: 2px;
+  z-index: 2;
+}
+
+.country-specs {
+  opacity: 0;
+  visibility: hidden;
+  font-size: 1.4rem;
+  padding: 0.5rem;
+  width: 12rem;
+  background-color: #f3f3f3;
+  color: #3f3f3f;
+  transform: translateX(10%);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.flag:hover ~ .country-specs {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0%);
+}

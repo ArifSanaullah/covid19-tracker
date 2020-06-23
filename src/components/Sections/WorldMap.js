@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer } from "react";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, { Marker } from "react-map-gl";
+import { v4 as uuidv4 } from "uuid";
 
 import jhAxios from "../../utilities/JH-axios-instance";
 import { MapDataContextProvider } from "../../store/contexts/MapDataContext";
@@ -22,9 +23,9 @@ function WorldMap() {
     viewPort: {
       width: "100vw",
       height: "100vh",
-      latitude: 30.175623,
-      longitude: 71.48764,
-      zoom: 12,
+      latitude: 30.3753,
+      longitude: 69.3451,
+      zoom: 4,
     },
   });
 
@@ -36,7 +37,8 @@ function WorldMap() {
           payload: { loadingMapData: true },
         });
 
-        const { data } = await jhAxios.get("/v2/jhucsse");
+        const { data } = await jhAxios.get("/v2/countries");
+        console.log(data[0]);
         dispatch({ type: GET_WORLD_MAP_DATA, payload: { mapData: data } });
 
         dispatch({
@@ -66,7 +68,38 @@ function WorldMap() {
           dispatch({ type: SET_VIEWPORT, payload: { viewPort } })
         }
         mapboxApiAccessToken={MAPBOX_PUBLIC_TOKEN}
-      />
+        mapStyle="mapbox://styles/mapbox/dark-v10"
+      >
+        {state?.mapData?.length &&
+          state.mapData.map((country) => (
+            <Marker
+              key={uuidv4()}
+              latitude={Number(country.countryInfo.lat)}
+              longitude={Number(country.countryInfo.long)}
+            >
+              <div className="country">
+                <div
+                  className="flag"
+                  style={{
+                    backgroundImage: `url(${country.countryInfo.flag})`,
+                  }}
+                />
+                <div className="country-specs">
+                  <h1>Country: {country.country}</h1>
+                  <h1>Population: {country.population}</h1>
+                  <h1>Total: {country.cases}</h1>
+                  <h1>Active: {country.active}</h1>
+                  <h1>Criticial: {country.critical}</h1>
+                  <h1>Deaths: {country.deaths}</h1>
+                  <h1>Recovered: {country.recovered}</h1>
+                  <h1>
+                    Last Updated at: {new Date(country.updated).toString()}
+                  </h1>
+                </div>
+              </div>
+            </Marker>
+          ))}
+      </ReactMapGL>
     </MapDataContextProvider>
   );
 }
