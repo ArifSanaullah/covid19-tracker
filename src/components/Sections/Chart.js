@@ -50,7 +50,6 @@ function Chart() {
     <Grid
       item
       xs={12}
-      style={{ border: "2px solid blue" }}
       container
       justify="center"
       alignContent="center"
