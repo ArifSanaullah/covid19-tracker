@@ -42,7 +42,7 @@ function App() {
 
   return (
     <ThemeProvider theme={responsiveFontSizes(theme)}>
-      <GlobalContextProvider state={{ state }}>
+      <GlobalContextProvider state={{ state, dispatch }}>
         <Grid container>
           <Grid className="hero" item container>
             <Grid item xs={12} lg={12}>

@@ -5,7 +5,20 @@ import {
   SET_VIEWPORT,
 } from "../../actionTypes";
 
-const mapDataReducer = (state, action) => {
+const initialState = {
+  mapData: null,
+  loadingMapData: false,
+  error: null,
+  viewPort: {
+    width: "100vw",
+    height: "100vh",
+    latitude: 30.3753,
+    longitude: 69.3451,
+    zoom: 4,
+  },
+};
+
+const mapDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_LOADING_MAP_DATA:
       return { ...state, loadingMapData: action.payload.loadingMapData };
