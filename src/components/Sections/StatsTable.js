@@ -67,11 +67,16 @@ export default function StickyHeadTable() {
           <TableHead>
             <TableRow>
               {fetchedCountries.length //using short-circuit here was causing a warning.
-                ? Object.keys(fetchedCountries[0]).map((key) => (
-                    <TableCell key={key} className={classes.tableHeadingCell}>
-                      {key.replace(/([a-z])([A-Z])/g, "$1 $2")}
-                    </TableCell>
-                  ))
+                ? Object.entries(fetchedCountries[0])
+                    .filter((entry) => entry[0] !== "Premium")
+                    .map((entry) => (
+                      <TableCell
+                        key={entry[0]}
+                        className={classes.tableHeadingCell}
+                      >
+                        {entry[0].replace(/([a-z])([A-Z])/g, "$1 $2")}
+                      </TableCell>
+                    ))
                 : null}
             </TableRow>
           </TableHead>
@@ -82,20 +87,20 @@ export default function StickyHeadTable() {
                     countries * countriesPerPage,
                     countries * countriesPerPage + countriesPerPage
                   )
-                  .map((country) => {
-                    return (
-                      <TableRow key={uuidv4()} className={classes.tableDataRow}>
-                        {Object.values(country).map((value) => (
+                  .map((country) => (
+                    <TableRow key={uuidv4()} className={classes.tableDataRow}>
+                      {Object.entries(country)
+                        .filter((entry) => entry[0] !== "Premium")
+                        .map((entry) => (
                           <TableCell
                             key={uuidv4()}
                             className={classes.tableDataCell}
                           >
-                            {value}
+                            {entry[1]}
                           </TableCell>
                         ))}
-                      </TableRow>
-                    );
-                  })
+                    </TableRow>
+                  ))
               : null}
           </TableBody>
         </Table>
